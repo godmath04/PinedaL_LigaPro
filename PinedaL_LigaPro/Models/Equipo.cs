@@ -19,7 +19,16 @@ namespace PinedaL_LigaPro.Models
         [Range(0, 20)]
         public int PartidosEmpatados { get; set; }
 
-        public int TotalPuntos { get; set; }
+        public int TotalPuntos
+        {
+            get
+            {
+                int total_puntos = PartidosGanados * 3 + PartidosEmpatados;
+                return total_puntos;
+
+            }
+        }
+
 
     }
 }

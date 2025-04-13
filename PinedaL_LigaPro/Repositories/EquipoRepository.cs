@@ -13,8 +13,7 @@ namespace PinedaL_LigaPro.Repositories
                 PartidosJugados = 10,
                 PartidosGanados = 10,
                 PartidosEmpatados = 0,
-                PartidosPerdidos = 0,
-                TotalPuntos = 30
+                PartidosPerdidos = 0
             };
 
             Equipo bsc = new Equipo
@@ -24,16 +23,26 @@ namespace PinedaL_LigaPro.Repositories
                 PartidosJugados = 10,
                 PartidosGanados = 1,
                 PartidosEmpatados = 0,
-                PartidosPerdidos = 9,
-                TotalPuntos = 3
+                PartidosPerdidos = 9
+               
             };
             equipos.Add (ldu);
             equipos.Add(bsc);
-
-
+            // Esto es para ordenar
+            equipos = equipos.OrderBy(item => item.TotalPuntos).ToList();
 
             return equipos;
 
         }
+    
+        public Equipo DevuelveInformacionEquipo(int Id)
+        {
+            var equipos = DevuelveListadoEquipos();
+            // Esto es usando lambda
+            var equipo = equipos.First(item => item.Id == Id);
+
+            return equipo;
+        }
+    
     }
 }

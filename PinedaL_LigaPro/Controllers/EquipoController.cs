@@ -24,7 +24,7 @@ namespace PinedaL_LigaPro.Controllers
 
             var equipo = _repository.DevuelveInformacionEquipo(Id);
 
-            return View();
+            return View(equipo);
         }
         [HttpPost]
         public IActionResult GuardarEquipo(Equipo equipo)
@@ -32,8 +32,8 @@ namespace PinedaL_LigaPro.Controllers
 
             try
             {
-                var actualizar = _repository.ActualizarEquipo(equipo);
-                return View();
+                _repository.ActualizarEquipo(equipo);
+                return RedirectToAction("List");
             }
             catch (Exception e)
             {

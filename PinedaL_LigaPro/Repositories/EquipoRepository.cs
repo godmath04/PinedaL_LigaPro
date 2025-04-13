@@ -1,53 +1,78 @@
-﻿using PinedaL_LigaPro.Models;
+﻿using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+using PinedaL_LigaPro.Models;
 namespace PinedaL_LigaPro.Repositories
 {
     public class EquipoRepository
     {
-        public IEnumerable<Equipo> DevuelveListadoEquipos()
+        // Sugerencia de Lista static generada por IA
+        public static List<Equipo> equipos = new List<Equipo>();
+
+        public EquipoRepository()
         {
-            List<Equipo> equipos = new List<Equipo> ();
+            if(equipos.Count == 0)
+            {
+                InicializarEquipos();
+            }
+        }
+
+        public void InicializarEquipos()
+        {
             Equipo ldu = new Equipo
             {
                 Id = 1,
-                Nombre = "lDU",
+                Nombre = "Liga de Quito",
                 PartidosJugados = 10,
                 PartidosGanados = 10,
                 PartidosEmpatados = 0,
                 PartidosPerdidos = 0
             };
 
-            Equipo bsc = new Equipo
+            Equipo barcelona = new Equipo
             {
                 Id = 2,
-                Nombre = "BSC",
+                Nombre = "Barcelona",
                 PartidosJugados = 10,
-                PartidosGanados = 1,
+                PartidosGanados = 8,
                 PartidosEmpatados = 0,
-                PartidosPerdidos = 9
-               
+                PartidosPerdidos = 2
             };
-            equipos.Add (ldu);
-            equipos.Add(bsc);
-            // Esto es para ordenar
-            equipos = equipos.OrderBy(item => item.TotalPuntos).ToList();
 
-            return equipos;
+            equipos.Add(ldu);
+            equipos.Add(barcelona);
+
+        }
+
+       
+
+        public IEnumerable<Equipo> DevuelveListadoEquipos()
+        {
+
+            return equipos.OrderByDescending(e => e.TotalPuntos);
 
         }
     
         public Equipo DevuelveInformacionEquipo(int Id)
         {
-            var equipos = DevuelveListadoEquipos();
-            // Esto es usando lambda
-            var equipo = equipos.First(item => item.Id == Id);
 
-            return equipo;
+            return equipos.FirstOrDefault(e => e.Id == Id);
+        }
+
+        public bool CrearEquipo(Equipo equipo)
+        {
+            equipo.Id = equipos.Max(e => e.Id) + 1;
+            equipos.Add(equipo);
+            return true;
         }
 
         public bool ActualizarEquipo(Equipo equipo)
         {
-            //Logica para actualizar
-            return true; 
+            var index = equipos.FindIndex(e => e.Id == equipo.Id);
+              if (index != -1)
+            {
+                equipos[index] = equipo;
+                return true;
+            }
+            return false;
         }
     
     }

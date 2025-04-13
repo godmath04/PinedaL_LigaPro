@@ -43,6 +43,12 @@ namespace PinedaL_LigaPro.Repositories
 
             return equipo;
         }
+
+        public bool ActualizarEquipo(Equipo equipo)
+        {
+            //Logica para actualizar
+            return true; 
+        }
     
     }
 }

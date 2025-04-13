@@ -4,7 +4,7 @@ using PinedaL_LigaPro.Repositories;
 
 namespace PinedaL_LigaPro.Controllers
 {
-    
+
     public class EquipoController : Controller
     {
 
@@ -21,7 +21,7 @@ namespace PinedaL_LigaPro.Controllers
 
         public IActionResult EditarEquipo(int Id)
         {
-            
+
             var equipo = _repository.DevuelveInformacionEquipo(Id);
 
             return View();
@@ -35,9 +35,11 @@ namespace PinedaL_LigaPro.Controllers
                 var actualizar = _repository.ActualizarEquipo(equipo);
                 return View();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 //logica para actualizar
                 throw;
             }
+        }
     }
 }

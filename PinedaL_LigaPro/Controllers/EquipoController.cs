@@ -76,8 +76,28 @@ namespace PinedaL_LigaPro.Controllers
             }
         }
 
+        public IActionResult Eliminar(int Id)
+        {
+            var equipo = _repository.DevuelveInformacionEquipo(Id);
+            if (equipo == null)
+            {
+                return NotFound();
+            }
+            return View(equipo);
+        }
 
+        [HttpPost, ActionName("Eliminar")]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmarEliminar(int Id)
+        {
+            var equipo = _repository.DevuelveInformacionEquipo(Id);
+            if (equipo == null)
+            {
+                return NotFound();
+            }
+            _repository.EliminarEquipo(Id);
+            return RedirectToAction("List");
 
-
+        }
     }
 }

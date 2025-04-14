@@ -9,7 +9,7 @@ namespace PinedaL_LigaPro.Repositories
 
         public EquipoRepository()
         {
-            if(equipos.Count == 0)
+            if (equipos.Count == 0)
             {
                 InicializarEquipos();
             }
@@ -42,7 +42,7 @@ namespace PinedaL_LigaPro.Repositories
 
         }
 
-       
+
 
         public IEnumerable<Equipo> DevuelveListadoEquipos()
         {
@@ -50,7 +50,7 @@ namespace PinedaL_LigaPro.Repositories
             return equipos.OrderByDescending(e => e.TotalPuntos);
 
         }
-    
+
         public Equipo DevuelveInformacionEquipo(int Id)
         {
 
@@ -67,9 +67,20 @@ namespace PinedaL_LigaPro.Repositories
         public bool ActualizarEquipo(Equipo equipo)
         {
             var index = equipos.FindIndex(e => e.Id == equipo.Id);
-              if (index != -1)
+            if (index != -1)
             {
                 equipos[index] = equipo;
+                return true;
+            }
+            return false;
+        }
+
+        public bool EliminarEquipo(int id)
+        {
+            var equipo = equipos.FirstOrDefault(e => e.Id == id);
+            if (equipo != null)
+            {
+                equipos.Remove(equipo);
                 return true;
             }
             return false;

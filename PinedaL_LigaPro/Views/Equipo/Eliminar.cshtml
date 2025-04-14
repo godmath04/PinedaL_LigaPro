@@ -1,0 +1,37 @@
+﻿@model PinedaL_LigaPro.Models.Equipo
+
+@{
+    ViewData["Title"] = "Eliminar Equipo";
+}
+
+<h2>¿Estás seguro que deseas eliminar este equipo?</h2>
+
+<div>
+    <h4>@Model.Nombre</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">ID</dt>
+        <dd class="col-sm-8">@Model.Id</dd>
+
+        <dt class="col-sm-4">Partidos Jugados</dt>
+        <dd class="col-sm-8">@Model.PartidosJugados</dd>
+
+        <dt class="col-sm-4">Ganados</dt>
+        <dd class="col-sm-8">@Model.PartidosGanados</dd>
+
+        <dt class="col-sm-4">Empatados</dt>
+        <dd class="col-sm-8">@Model.PartidosEmpatados</dd>
+
+        <dt class="col-sm-4">Perdidos</dt>
+        <dd class="col-sm-8">@Model.PartidosPerdidos</dd>
+
+        <dt class="col-sm-4">Total de Puntos</dt>
+        <dd class="col-sm-8">@Model.TotalPuntos</dd>
+    </dl>
+
+    <form asp-action="Eliminar" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="List" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

@@ -15,9 +15,42 @@ namespace PinedaL_LigaPro.Controllers
         }
         public IActionResult List()
         {
-            var equipos = _repository.DevuelveListadoEquipos();
+            var equipos = _repository.DevuelveListadoEquipos()
+                .OrderByDescending(e => e.TotalPuntos)
+                .ToList();
             return View(equipos);
         }
+
+        public IActionResult Details(int id)
+        {
+            var equipo = _repository.DevuelveInformacionEquipo(id);
+            if(equipo == null)
+            {
+                return NotFound();
+            }
+            return View(equipo);
+
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Equipo equipo)
+        {
+            if (ModelState.IsValid)
+            {
+                _repository.CrearEquipo(equipo);
+                return RedirectToAction("List");
+            }
+            return View(equipo);
+        }
+
+
 
         public IActionResult EditarEquipo(int Id)
         {
@@ -26,6 +59,7 @@ namespace PinedaL_LigaPro.Controllers
 
             return View(equipo);
         }
+
         [HttpPost]
         public IActionResult GuardarEquipo(Equipo equipo)
         {
@@ -37,9 +71,13 @@ namespace PinedaL_LigaPro.Controllers
             }
             catch (Exception e)
             {
-                //logica para actualizar
+            
                 throw;
             }
         }
+
+
+
+
     }
 }

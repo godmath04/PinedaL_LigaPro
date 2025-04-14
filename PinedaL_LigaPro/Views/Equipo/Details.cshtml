@@ -1,0 +1,39 @@
+﻿@model PinedaL_LigaPro.Models.Equipo
+
+@{
+    ViewData["Title"] = "Detalles del Equipo";
+}
+
+<h2>Detalles del Equipo</h2>
+
+<div>
+    <h4>@Model.Nombre</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">ID</dt>
+        <dd class="col-sm-8">@Model.Id</dd>
+
+        <dt class="col-sm-4">Nombre</dt>
+        <dd class="col-sm-8">@Model.Nombre</dd>
+
+        <dt class="col-sm-4">Partidos Jugados</dt>
+        <dd class="col-sm-8">@Model.PartidosJugados</dd>
+
+        <dt class="col-sm-4">Ganados</dt>
+        <dd class="col-sm-8">@Model.PartidosGanados</dd>
+
+        <dt class="col-sm-4">Empatados</dt>
+        <dd class="col-sm-8">@Model.PartidosEmpatados</dd>
+
+        <dt class="col-sm-4">Perdidos</dt>
+        <dd class="col-sm-8">@Model.PartidosPerdidos</dd>
+
+        <dt class="col-sm-4">Total de Puntos</dt>
+        <dd class="col-sm-8">@Model.TotalPuntos</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="List" class="btn btn-secondary">Volver a la lista</a>
+    <a asp-action="EditarEquipo" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+</div>

@@ -18,7 +18,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    padding-bottom: 100px;
 }
 
 .carousel-item img {
@@ -29,4 +30,10 @@ body {
 h2 {
     color: #003366;
     font-weight: bold;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

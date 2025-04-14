@@ -11,6 +11,9 @@ namespace PinedaL_LigaPro.Models
         [Display(Name = "Nombre del Equipo")]
         public string Nombre { get; set; }
         [Range(0,20)]
+        public string Descripcion { get; set; }
+        public string LogoUrl { get; set; }
+
         public int PartidosJugados { get; set; }
         [Range(0, 20)]
         public int PartidosGanados { get; set; }

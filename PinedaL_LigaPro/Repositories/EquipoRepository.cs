@@ -24,7 +24,9 @@ namespace PinedaL_LigaPro.Repositories
                 PartidosJugados = 10,
                 PartidosGanados = 10,
                 PartidosEmpatados = 0,
-                PartidosPerdidos = 0
+                PartidosPerdidos = 0,
+                LogoUrl = "/images/ldu.jpg",
+                Descripcion = "Fundado en 1930, LDU es uno de los equipos más importantes del país."
             };
 
             Equipo barcelona = new Equipo
@@ -34,7 +36,9 @@ namespace PinedaL_LigaPro.Repositories
                 PartidosJugados = 10,
                 PartidosGanados = 8,
                 PartidosEmpatados = 0,
-                PartidosPerdidos = 2
+                PartidosPerdidos = 2,
+                LogoUrl = "/images/bsc.jpg",
+                Descripcion = "Barcelona SC es el equipo más popular de Ecuador, con sede en Guayaquil."
             };
 
             equipos.Add(ldu);

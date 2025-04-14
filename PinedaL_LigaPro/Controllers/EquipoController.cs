@@ -32,6 +32,14 @@ namespace PinedaL_LigaPro.Controllers
 
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Details(Equipo equipo)
+        {
+            _repository.ActualizarEquipo(equipo);
+            return RedirectToAction("List");
+        }
+
         public IActionResult Create()
         {
             return View();

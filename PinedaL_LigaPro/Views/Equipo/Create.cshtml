@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label asp-for="PartidosGanados" class="control-label"></label>
-                <input asp-for="PartidosGanados" class="form-control" />
+                <input asp-for="PartidosGanados" class="form-control" oninput="calcularPuntos()" />
                 <span asp-validation-for="PartidosGanados" class="text-danger"></span>
             </div>
 
@@ -40,8 +40,13 @@
 
             <div class="form-group">
                 <label asp-for="PartidosEmpatados" class="control-label"></label>
-                <input asp-for="PartidosEmpatados" class="form-control" />
+                <input asp-for="PartidosEmpatados" class="form-control" oninput="calcularPuntos()" />
                 <span asp-validation-for="PartidosEmpatados" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Total de Puntos (calculado)</label>
+                <p id="mensajePuntos" class="form-control-plaintext text-primary font-weight-bold"></p>
             </div>
 
             <div class="form-group mt-3">
@@ -58,5 +63,18 @@
 </div>
 
 @section Scripts {
+    <script>
+        function calcularPuntos() {
+            let ganados = parseInt(document.getElementById("PartidosGanados").value) || 0;
+            let empatados = parseInt(document.getElementById("PartidosEmpatados").value) || 0;
+            let puntos = ganados * 3 + empatados;
+
+            document.getElementById("mensajePuntos").innerText = `Total de puntos: ${puntos}`;
+        }
+
+        window.onload = calcularPuntos;
+    </script>
+
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
